@@ -406,5 +406,12 @@ use command : "ngspice sky130_inv.spice" to open that file in ngspice.
 
 
 
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/89be6ff3-d991-482d-bd90-5d4c33947a3a)
+
+
+
+
+
+
 
 
