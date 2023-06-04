@@ -511,7 +511,48 @@ Furthermore, the width and height of the standard cell need to be specified in a
 
 By extracting the necessary information from the LEF file, which contains details about the PR boundary, I/O ports, and power and ground rails, designers can integrate the standard cell into their design flow, ensuring that it aligns with the track-based routing resources and meets the required design guidelines. 
 
-First open the layout first.   
+First open the layout of inverter.   
 ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/5f005dd1-bd17-4ba2-aff9-a51a108f6090)     
 
-To fetvh track   
+Now we'll check track info. on ```vsduser@vsdsquadron:~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd$ less tracks.info```      
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/27fb7db0-ef26-46df-9296-7a88ac30165e)     
+
+Now press `G` to activate the grid.     
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/1033f315-f083-4bcc-bad9-27b66cec2deb)     
+
+The I/O ports are in `li` layer so we'll check if they intersect at the grid.     
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/23a34bae-c9b0-4615-8785-ed72426cf970)    
+
+The below image shows the intersection of metal layer at I/O ports.    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/e0d53b3e-f688-4d89-b45b-f316e48ce0ca)    
+
+## II. Convert magic layout to std. cell design.     
+
+A cell with ports is called a macro cell. Ports are defined as pins within the macro. The objective is to extract information from a MAG file to generate a corresponding LEF file. The MAG file contains layout details, including the pins. By analyzing the MAG file, information such as dimensions and pin locations can be extracted. This information is then formatted into the LEF file, which represents the macro cell in a standardized format. Generating the LEF file ensures compatibility and proper integration of the macro cell into the circuit design.    
+
+Here for inverter, in magic layout ```EDIT --> TEXT```.    
+It'll create a dialog box(text helper), now using `S` multiple times choose input port - A, output port - Y, VDD and GND.     
+
+As soon as we select, few things will be auto-filled ike label name, Rotation, etc.    
+Make necessary changes as below :   
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/32cbda78-9670-4bf5-8592-1265149b8998)
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/d9e3eb1b-4b13-40db-a6c1-45fe549089a0)
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/34fa61b4-4376-4df7-b334-7ab78faa0bb4)
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/0572dca1-3f9a-40c9-b800-21355178ab54)   
+
+Now as the parameter are set, we'll extract the .lef file.    
+
+## III. Custom cell naming.    
+
+Now extract the above using the command `save sky130_yash.mag`.    
+This will extract the file     
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/a76a9212-6ac7-42e8-8d5f-735624688267)    
+
+To open that use : ```magic -T sky130A.tech sky130_yash.mag```    
+
+Further extract the lef file by `lef write` in tkcon.    
+
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/5161c6ed-6a04-49a9-a082-4bd96965460f)    
+
+
+
