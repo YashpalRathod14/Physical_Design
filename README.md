@@ -399,8 +399,104 @@ open the extracted file using vim :
 Now make changes in extracted spice file :   
 ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/0956b3ff-f037-4072-b8c3-dc3f27fa6ddb)    
 
-use command : "ngspice sky130_inv.spice" to open that file in ngspice.    
+use command : ```ngspice sky130_inv.spice``` to open that file in ngspice.     
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/47d736bd-a763-4b02-9db2-8b59e7213a80)     
 
+Now to plot we can use : ```plot y vs time a```.     
+Below is the plot of our inverter.   
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/06dd8bf1-4c9a-40e3-9a6c-8c90548ff3e8)     
+
+Now we'll zoom in and try to find the rise time of inverter.    
+On clicking on the required waveform at that value we'll get t he value printed in terminal.    
+For rise time, we choose 20% of Vdd to 80% of Vdd.
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/aaec27be-698c-4160-9a4e-d65c8727e016)    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/34eba1ee-15e2-428e-959a-86b7b3d2cd03)     
+
+Using above 2, we can calculate the rise time of our inverter.    
+
+Now well find propogation delay.   
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/98f33351-7561-491a-9d95-795f01f69763)
+propogation delay will be difference between output and input at 50% of Vdd.    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/105a8dab-6118-4ca5-b9ee-6220150ad6bc)    
+
+## III. Magic Tool and DRC rules.    
+
+First we'll get to know about the documentation of magic at : ```http://opencircuitdesign.com/magic```     
+Navigating the site, we'll get 2 useful directories : Using Magic and Technology Files.   
+```Tech File``` : It has layer types, colours, patterns, electrical connectivity, DRC rules, extraction rules for generating netlist, rules for LEF and DEF etc.   
+```Using Magic``` It is sort of tutorial documentation for guiding us how to use magic and command shortcuts.   
+```Design Rules``` and ```peripheral rules``` they tells us about specific violations for all the layers.    
+
+Steps to download Magic  :    
+we use ```wget``` called web get as non-interactive downloader command.    
+Use ```wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz``` in our home directory to download it.    
+Now we have to extract that file using ```tar```.    
+use command ```tar xfz drc_tests.tgz``` to extract the files.    
+
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/725c648f-0ff8-4560-8c3b-b1b6dc273dc2)    
+
+Now to open magic in high resolution : ```magic -d XR```   
+
+##IV. Introduction to Magic   
+   
+
+Magic Tablet: It refers to the software tool called Magic, which is used for integrated circuit layout design.    
+
+```Derived Layers and Via```: The Magic tablet utilizes various derived layers, and one of them is the "via" layer. A via represents an area filled with contact cuts, which are used for connecting different metal layers.    
+
+Feedback Entry and Feed Clear: The view you see on the screen is a feedback entry. You can dismiss it by using the command ```feed clear```    
+
+Snap Internal Command: The ```snap int``` command is used to make the cursor move along the edges of the grid.    
+
+Steps to import metalfile : ```File --> Open --> metal. met3.mg```.
+
+using command ```drc why``` we can check the reason behind the DRC violation in selected area.    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/339e7d7f-65bc-4a9d-a0d7-9c7c6c46e986)   
+
+Metal 3.4 DRC Rules: These are design rules for metal layers in integrated circuits. According to the rules, Via2 (a type of via) must be enclosed by Metal3 layer by at least 0.065u (unit of length). 
+
+Drawing M3 Contact: Using the mouse pointer, you can hover over the M3 contact icon on the side toolbar and draw a large area of M3 contact on the layout.    
+
+Command ```cif see VIA2```: With the cursor boxed around the M3 area, you can type the command "cif see VIA2" This command creates contact cuts in the shape of black squares. These contact cuts don't physically exist on the drawn layout but represent a mask layer called VIA2, which will be included in the GDS (Graphic Data System) file. Further details about VIA2 can be found in the CIF (Caltech Intermediate Format) output section of the tech file.
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/f632a288-ce23-400c-b585-dc408d12432f)     
+
+
+Spacing Rules: There are specific spacing rules mentioned, such as the spacing between Via2 and Metal 3 being 0.065u. These rules ensure that the contacts are placed correctly and meet the design requirements.    
+
+Measuring Distance: By putting the cursor between the contact cut and the drawn via edge and using the "tkcon" command, you can obtain the distance between them. This allows you to verify that the tool ```automatically places``` the contact cuts with the appropriate spacing, ensuring there are no Design Rule Check (DRC) errors. The distance should not be smaller than the specified spacing value.    
+
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/cbc4ae22-703a-4a82-b0b2-1263a89c68d4)     
+
+##V. fix poly.9 error in DRC.    
+
+First load the file ```poly.mag```   
+
+According to the documentation the constraint is  :    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/753b7b8f-79c0-45be-8c65-44190513cd70)     
+
+So we check the distance :    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/a0bb52cf-ebfe-4325-abef-3760e0c5e65b)    
+It seems that there is no error.     
+
+Now To create a rule defining spacing between polyres (poly resistor) and poly (poly silicon) : 
+Open tech file : ```sky130A.tech```   
+ If there is no existing rule defining the spacing between polyres and poly, add a new rule in the tech file. Specify the desired spacing value for the rule, which represents the minimum distance that must be maintained between polyres and poly.     
+ ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/2cfa8f9e-9648-4e0d-a4bf-abcac3bb6f3f)    
+ ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/b1a90260-bee0-421f-8da9-b5db7f9ba229)     
+ 
+ Using ```tech load sky130A.tech``` & ```drc check```.    
+ 
+ ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/19d54e5b-9882-464c-ad93-d60bda7dbac9)     
+ 
+It's possible that after resolving the spacing violation between polyres and poly, violations between poly and tap/diff (tapping or diffusion layers) may arise. To address these violations, you will need to provide additional spacing rules for tap/diff in the tech file.   
+Modify thw tech file again :     
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/da463509-0f38-4692-9316-7c6d20497591)     
+
+Again using ```tech load sky130A.tech``` & ```drc check``` the error is resolved.    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/22af8793-a210-4146-90a6-04804cb47db0)     
+
+
+ 
 
 
 
