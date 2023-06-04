@@ -554,5 +554,9 @@ Further extract the lef file by `lef write` in tkcon.
 
 ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/5161c6ed-6a04-49a9-a082-4bd96965460f)    
 
+Opening the .lef file we'll see the pins are created because when we set a layer to port, a PIN is formed.   
+Also the details of ports are in the order we gave to port as 0 being the highest order.    
+
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/d44a85dd-103d-4155-824c-d23d56af8ec1)    
 
 
