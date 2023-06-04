@@ -50,25 +50,39 @@ This repository is about the open-source tool OpenLane which includes OpenROAD, 
 
 ## i. Introduction to basic terminologies.
 
-  **Pads:** Sends signal in and out of the chip.  
-  **Core:** Where the digital logic sits (ex. mux, gates, etc.).  
-  **Die:** Size of the entire chip. It is basically manufactured on silicon wafer.  
+  **Pads:**  Pads are components on a chip that serve as interfaces between the internal circuitry and the external world. They provide a means to send signals into and out of the chip. Pads are typically located along the periphery of the chip and are used for various purposes such as power supply connections, input/output (I/O) connections, and testability features. They allow the chip to communicate with other devices or systems.    
+  **Core:** a core refers to the central processing unit (CPU) or the part of the chip where the digital logic is located. The core consists of various functional units, such as multiplexers (mux), gates, arithmetic logic units (ALUs), and registers, which are responsible for performing computations and executing instructions. The core is the primary component responsible for carrying out the main tasks and operations of the chip.   
+  **Die:** The die refers to the individual piece or unit of a semiconductor chip. It is essentially a small, square or rectangular slice of silicon wafer on which the integrated circuits (ICs) and other components are fabricated. The die contains the active components of the chip, including transistors, resistors, capacitors, and interconnects, which are interconnected to form the desired circuitry. The size of the die determines the overall physical dimensions of the chip. Multiple dies can be manufactured on a single silicon wafer during the semiconductor fabrication process.   
   
 ## ii. Introduction to RISC V
+RISC-V is an open-source instruction set architecture (ISA) that defines the set of instructions a computer processor can execute. RISC-V stands for "Reduced Instruction Set Computer Five," where "Five" represents the fifth major version of the architecture.
 
+The RISC-V ISA is designed to be simple and modular, making it easier to implement in hardware and software. It follows the principles of a reduced instruction set computer (RISC), which emphasizes a small number of simple instructions that can be executed efficiently. RISC-V supports both 32-bit and 64-bit instruction formats, providing flexibility for different computing needs.
 
- Basically the high level language code is converted to assembly level and then to Machinbe Code.   
- The above is implemented on cpu core, in our case RISC V and then it is fabricated into layout.   
+When programming in a high-level language like C or C++, the code is typically written using instructions that are more abstract and easier for humans to understand. To execute this high-level code on a RISC-V processor, it needs to be translated into lower-level instructions. This translation process involves converting the high-level code into assembly language, which is a human-readable representation of the processor instructions. Assembly language instructions correspond directly to the machine code instructions that the RISC-V processor can understand and execute.
+
+The RISC-V processor core is responsible for executing the machine code instructions. It contains the necessary digital logic circuits, such as arithmetic logic units (ALUs), registers, and control units, to perform the operations specified by the instructions. The RISC-V core interprets the machine code instructions sequentially, executing them one by one to perform the desired computations or operations.
+
+After the design of the RISC-V core, it needs to be fabricated into an actual physical layout. This involves manufacturing the integrated circuit (IC) that incorporates the RISC-V processor. The fabrication process typically starts with a silicon wafer, onto which the various components of the RISC-V core are etched using techniques like photolithography. Once the fabrication is complete, the RISC-V core is integrated with other components, such as memory, I/O interfaces, and cache, to form a complete system-on-chip (SoC) or a microcontroller unit (MCU).
+
+In summary, RISC-V is an open-source instruction set architecture used for designing computer processors. High-level language code is translated into assembly language and then further into machine code, which is executed by a RISC-V processor core. The designed RISC-V core is then fabricated into a physical layout to create a functional chip.
  
 ## iii. From Software applications to Hardware. 
  
  
 Here the entire flow is shown from application to hardware.      
-**System Software :**  It handles the translation from application to hardware.  
-      It has OS, Comnpiler and Assembler.
-      Compiler translated C, C++, etc. high level program to Instruction Set of the cpu architecture (ex. x86, RISC V, ARM, etc.)    
-      Assembler translated this ISA to machine code which further fed to RTL of our hardware.     
-      That RTL hardware code is synthesized and after physical design of the synthesized netlist, hardware fabrication is carried out.    
+**System Software :**     
+Application: The process begins with the application, which is typically written in a high-level programming language like C, C++, or Java. The application contains the desired functionality or logic that needs to be executed on a computer system.   
+
+System Software: The system software plays a crucial role in translating the application code to hardware instructions. It consists of three main components: the operating system (OS), the compiler, and the assembler.   
+- Operating System (OS): The OS provides an interface between the application software and the underlying hardware. It manages resources, handles input/output operations, and provides services to the application programs.   
+- Compiler: The compiler takes the high-level code (e.g., C, C++) as input and translates it into the corresponding instructions of the target CPU architecture.     These instructions are written in the instruction set architecture (ISA) specific to the chosen processor, such as x86, RISC-V, ARM, etc.   
+- Assembler: The assembler takes the output of the compiler, which is the code in ISA, and converts it into machine code. Machine code consists of binary instructions that can be directly executed by the hardware.   
+- RTL Hardware Code: The machine code generated by the assembler serves as input to the register-transfer level (RTL) hardware code. RTL is a low-level hardware description language that describes the digital logic circuits and the interconnections between them. The RTL code specifies the behavior and functionality of the hardware components.   
+
+Synthesis: The RTL hardware code is synthesized, which means it is transformed into a gate-level representation. During synthesis, the RTL code is converted into a netlist, which consists of a collection of logic gates (e.g., AND, OR, XOR) and flip-flops. This gate-level representation represents the hardware implementation of the desired functionality.   
+
+Physical Design and Fabrication: After synthesis, the physical design phase begins. The synthesized netlist is further processed to create a physical layout of the chip. This involves placing the gates and interconnects on the silicon wafer and optimizing the layout for factors like performance, power consumption, and signal integrity. Once the physical design is complete, the fabrication process takes place, where the chip is manufactured based on the layout.   
       
 # 3. SoC Design and OpenLane    
 ## i. Introduction to components of open source digital ASIC design.
