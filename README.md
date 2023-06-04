@@ -437,7 +437,7 @@ use command ```tar xfz drc_tests.tgz``` to extract the files.
 
 Now to open magic in high resolution : ```magic -d XR```   
 
-##IV. Introduction to Magic   
+## IV. Introduction to Magic   
    
 
 Magic Tablet: It refers to the software tool called Magic, which is used for integrated circuit layout design.    
@@ -467,7 +467,7 @@ Measuring Distance: By putting the cursor between the contact cut and the drawn 
 
 ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/cbc4ae22-703a-4a82-b0b2-1263a89c68d4)     
 
-##V. fix poly.9 error in DRC.    
+## V. fix poly.9 error in DRC.    
 
 First load the file ```poly.mag```   
 
@@ -495,11 +495,23 @@ Modify thw tech file again :
 Again using ```tech load sky130A.tech``` & ```drc check``` the error is resolved.    
 ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/22af8793-a210-4146-90a6-04804cb47db0)     
 
+# 12.  Pre-layout Timing Analysis.     
 
- 
+## I. Convert grid info. to track info.     
 
+During the placement phase in the design of integrated circuits, it is not necessary to have the entire detailed information of the individual cells within the circuit. Instead, only certain key information is required, such as the PR (placement and routing) boundary, I/O ports, and power and ground rails of the cell. This information is typically defined in a specific file format called the Library Exchange Format (LEF).    
 
+The main objective during placement is to extract the necessary information from the cell, usually represented in a layout file format known as the Magic (MAG) file, and integrate it into the overall design flow of the circuit.    
 
+Before delving further into the topic, it is essential to understand the concept of tracks in the context of integrated circuit design. In this context, a track refers to a line or path on which metal layers are drawn for routing signals. Tracks are used to define the height of the standard cell, ensuring proper alignment and spacing of circuit components.    
 
+When implementing a custom standard cell, there are specific guidelines that need to be followed. For instance, the I/O ports of the standard cell must align with the intersection points of the horizontal and vertical tracks. This ensures that the input and output connections of the cell are properly aligned with the routing resources.    
 
+Furthermore, the width and height of the standard cell need to be specified in a way that adheres to certain design rules. Specifically, the width and height should be odd multiples of the horizontal and vertical track pitch, respectively. The track pitch refers to the spacing between adjacent tracks, and following this guideline helps ensure proper alignment and compatibility with the overall routing grid.    
 
+By extracting the necessary information from the LEF file, which contains details about the PR boundary, I/O ports, and power and ground rails, designers can integrate the standard cell into their design flow, ensuring that it aligns with the track-based routing resources and meets the required design guidelines. 
+
+First open the layout first.   
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/5f005dd1-bd17-4ba2-aff9-a51a108f6090)     
+
+To fetvh track   
