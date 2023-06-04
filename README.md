@@ -50,9 +50,11 @@ This repository is about the open-source tool OpenLane which includes OpenROAD, 
 
 ## i. Introduction to basic terminologies.
 
-  **Pads:**  Pads are components on a chip that serve as interfaces between the internal circuitry and the external world. They provide a means to send signals into and out of the chip. Pads are typically located along the periphery of the chip and are used for various purposes such as power supply connections, input/output (I/O) connections, and testability features. They allow the chip to communicate with other devices or systems.    
-  **Core:** a core refers to the central processing unit (CPU) or the part of the chip where the digital logic is located. The core consists of various functional units, such as multiplexers (mux), gates, arithmetic logic units (ALUs), and registers, which are responsible for performing computations and executing instructions. The core is the primary component responsible for carrying out the main tasks and operations of the chip.   
-  **Die:** The die refers to the individual piece or unit of a semiconductor chip. It is essentially a small, square or rectangular slice of silicon wafer on which the integrated circuits (ICs) and other components are fabricated. The die contains the active components of the chip, including transistors, resistors, capacitors, and interconnects, which are interconnected to form the desired circuitry. The size of the die determines the overall physical dimensions of the chip. Multiple dies can be manufactured on a single silicon wafer during the semiconductor fabrication process.   
+ **Pads:**  Pads are components on a chip that serve as interfaces between the internal circuitry and the external world. They provide a means to send signals into and out of the chip. Pads are typically located along the periphery of the chip and are used for various purposes such as power supply connections, input/output (I/O) connections, and testability features. They allow the chip to communicate with other devices or systems.   
+ 
+ **Core:** a core refers to the central processing unit (CPU) or the part of the chip where the digital logic is located. The core consists of various functional units, such as multiplexers (mux), gates, arithmetic logic units (ALUs), and registers, which are responsible for performing computations and executing instructions. The core is the primary component responsible for carrying out the main tasks and operations of the chip.   
+ 
+ **Die:** The die refers to the individual piece or unit of a semiconductor chip. It is essentially a small, square or rectangular slice of silicon wafer on which the integrated circuits (ICs) and other components are fabricated. The die contains the active components of the chip, including transistors, resistors, capacitors, and interconnects, which are interconnected to form the desired circuitry. The size of the die determines the overall physical dimensions of the chip. Multiple dies can be manufactured on a single silicon wafer during the semiconductor fabrication process.   
   
 ## ii. Introduction to RISC V
 RISC-V is an open-source instruction set architecture (ISA) that defines the set of instructions a computer processor can execute. RISC-V stands for "Reduced Instruction Set Computer Five," where "Five" represents the fifth major version of the architecture.
@@ -86,33 +88,39 @@ Physical Design and Fabrication: After synthesis, the physical design phase begi
       
 # 3. SoC Design and OpenLane    
 ## i. Introduction to components of open source digital ASIC design.
- 
- 
-  There are 3 main things we need for open source ASIC design.    
-  RTL IP's, EDA tools, and PDKs.    
-  
-  
- we already avail open source EDA tools and RTL IPs from above mentioned sources.    
-  **PDK (Process Development Kit) :** Its basically the interface between the FAB and the designers. It contains filkes to model a fabrication process for EDA tools used to design our IC. 
-  It contains :    
-  Process Design Rules : DRC, LVS, PEX...     
-  Device Models.   
-  Digital Standard cell libraries.   
-  I/O libraries and so on.   
-  
- PDKs contains NDA, so it made difficult to fabricate for masses. But in june 30, 2020 : Google and SkyWater released OpenSource PDK for 130nm processor. 
- 
- So now we have Open source PDKs too to make full open source ASIC design.
- 
+The three main components required for open-source ASIC (Application-Specific Integrated Circuit) design are RTL IP's, EDA (Electronic Design Automation) tools, and PDKs (Process Development Kits).
+
+RTL IP's: RTL (Register Transfer Level) IP's are pre-designed and pre-verified building blocks or modules that can be integrated into a larger ASIC design. These IP's provide specific functionality or logic and can save time and effort in the design process. Open-source RTL IP's are available from various sources, allowing designers to utilize and integrate them into their designs without reinventing the wheel.
+
+EDA Tools: EDA tools are software tools used in the design, verification, and analysis of integrated circuits. Open-source EDA tools are available to perform tasks such as synthesis, simulation, place and route, and timing analysis. These tools enable designers to perform the necessary steps to convert their RTL code into a physical layout that can be fabricated into an ASIC.
+
+PDKs (Process Development Kits): PDKs serve as the interface between designers and the fabrication process. A PDK contains files and information necessary to model a specific fabrication process in EDA tools. It typically includes Process Design Rules (DRC), Layout versus Schematic (LVS) checks, parasitic extraction (PEX), device models, digital standard cell libraries, I/O libraries, and other relevant data.
+
+PDKs are essential for accurately representing the fabrication process during the design phase. They provide guidelines, constraints, and models that ensure the design is compatible with the chosen process technology. However, PDKs often come with non-disclosure agreements (NDAs) due to the proprietary nature of the fabrication process.
+
+In June 2020, Google and SkyWater Technology released an open-source PDK for a 130nm process. This open-source PDK allowed designers to access the necessary information and tools to design and fabricate ASICs using the 130nm technology node, thus enabling a more accessible and transparent approach to ASIC design for the open-source community.
+
+Overall, open-source RTL IP's, EDA tools, and PDKs play crucial roles in enabling open-source ASIC design, providing designers with the necessary resources and tools to create custom integrated circuits.
 
 ## ii. RTL2GDS flow.   
 
-**Synthesis :** Converts RTL to circuit out of components from standard cell library.    
-**Floor Planning & Power Planning :** Objective is to plan whole chip's silicon area.   
-**Placement :** Components are placed together in order to reduce interconnect delay and also to get successful routingh afterwards.    
-**Clock Tree Synthesis :** To deliver clock to aLL Sequential elements with minimum skew and in good shape.   
-**Routing :** Implementation of interconbnect using metal layers.    
-**Sign Off :** Physical Verifications like DRC, LVS check along with STA.    
+The RTL-to-GDS (Register Transfer Level to Graphic Data System) flow is a sequence of steps in the physical design process of an integrated circuit, starting from the Register Transfer Level (RTL) description and ending with the Graphic Data System (GDS) file, which contains the layout information for fabrication. Here's an overview of the main steps involved in the RTL-to-GDS flow:
+
+**Synthesis**: In the synthesis step, the RTL description, which represents the desired functionality of the circuit, is converted into a gate-level netlist. This involves mapping the RTL components to corresponding components from a standard cell library, which contains pre-designed and pre-verified digital logic components.
+
+**Floor Planning** and **Power Planning**: Floor planning involves determining the placement and arrangement of major components on the chip, considering factors like chip size, power distribution, and performance goals. Power planning ensures an efficient distribution of power and ground networks throughout the chip.
+
+**Placement**: During placement, the gate-level netlist is mapped onto the physical chip layout. The goal is to place the components in such a way that interconnect delay is minimized and there is sufficient space for routing. Placement also considers constraints such as power, clock, and signal integrity.
+
+**Clock Tree Synthesis**: Clock tree synthesis (CTS) is the process of generating an optimized clock distribution network. The objective is to deliver the clock signal to all sequential elements (e.g., flip-flops) with minimal skew and good clock shape. CTS ensures that the clock signal reaches each part of the chip efficiently.
+
+**Routing**: Routing is the process of implementing the interconnections between the placed components using metal layers. It involves determining the optimal paths for the interconnect wires, considering factors like timing, signal integrity, and congestion. Routing aims to minimize delay and ensure correct signal propagation.
+
+**Sign-off**: The sign-off stage involves performing various physical verification checks to ensure the design is ready for fabrication. This includes Design Rule Check (DRC), which verifies that the layout adheres to manufacturing rules, Layout versus Schematic (LVS) check, which compares the layout with the netlist, and Static Timing Analysis (STA), which verifies that timing constraints are met.
+
+After successfully completing the sign-off stage, the final GDS file is generated. The GDS file contains the detailed layout information, including the geometric shapes and positions of the components, interconnects, and other design elements. This file is then used for the fabrication of the integrated circuit.
+
+The RTL-to-GDS flow is a complex and iterative process that requires expertise in various areas of physical design and verification. It involves multiple iterations and optimizations to achieve a well-optimized and manufacturable chip layout.
 
 ## iii. Introduction to OpenLane.    
 OpenLane comes with Apache version 2.0 license.   
