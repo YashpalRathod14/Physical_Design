@@ -48,7 +48,7 @@ This repository is about the open-source tool OpenLane which includes OpenROAD, 
 
 # 2. How to talk to computers ?
 
-## i. Introduction to basic terminologies.
+##  Introduction to basic terminologies.
 
  **Pads:**  Pads are components on a chip that serve as interfaces between the internal circuitry and the external world. They provide a means to send signals into and out of the chip. Pads are typically located along the periphery of the chip and are used for various purposes such as power supply connections, input/output (I/O) connections, and testability features. They allow the chip to communicate with other devices or systems.   
  
@@ -56,7 +56,7 @@ This repository is about the open-source tool OpenLane which includes OpenROAD, 
  
  **Die:** The die refers to the individual piece or unit of a semiconductor chip. It is essentially a small, square or rectangular slice of silicon wafer on which the integrated circuits (ICs) and other components are fabricated. The die contains the active components of the chip, including transistors, resistors, capacitors, and interconnects, which are interconnected to form the desired circuitry. The size of the die determines the overall physical dimensions of the chip. Multiple dies can be manufactured on a single silicon wafer during the semiconductor fabrication process.   
   
-## ii. Introduction to RISC V
+##  Introduction to RISC V
 RISC-V is an open-source instruction set architecture (ISA) that defines the set of instructions a computer processor can execute. RISC-V stands for "Reduced Instruction Set Computer Five," where "Five" represents the fifth major version of the architecture.
 
 The RISC-V ISA is designed to be simple and modular, making it easier to implement in hardware and software. It follows the principles of a reduced instruction set computer (RISC), which emphasizes a small number of simple instructions that can be executed efficiently. RISC-V supports both 32-bit and 64-bit instruction formats, providing flexibility for different computing needs.
@@ -69,7 +69,7 @@ After the design of the RISC-V core, it needs to be fabricated into an actual ph
 
 In summary, RISC-V is an open-source instruction set architecture used for designing computer processors. High-level language code is translated into assembly language and then further into machine code, which is executed by a RISC-V processor core. The designed RISC-V core is then fabricated into a physical layout to create a functional chip.
  
-## iii. From Software applications to Hardware. 
+## From Software applications to Hardware. 
  
  
 Here the entire flow is shown from application to hardware.      
@@ -87,7 +87,7 @@ Synthesis: The RTL hardware code is synthesized, which means it is transformed i
 Physical Design and Fabrication: After synthesis, the physical design phase begins. The synthesized netlist is further processed to create a physical layout of the chip. This involves placing the gates and interconnects on the silicon wafer and optimizing the layout for factors like performance, power consumption, and signal integrity. Once the physical design is complete, the fabrication process takes place, where the chip is manufactured based on the layout.   
       
 # 3. SoC Design and OpenLane    
-## i. Introduction to components of open source digital ASIC design.
+##  Introduction to components of open source digital ASIC design.
 The three main components required for open-source ASIC (Application-Specific Integrated Circuit) design are RTL IP's, EDA (Electronic Design Automation) tools, and PDKs (Process Development Kits).
 
 RTL IP's: RTL (Register Transfer Level) IP's are pre-designed and pre-verified building blocks or modules that can be integrated into a larger ASIC design. These IP's provide specific functionality or logic and can save time and effort in the design process. Open-source RTL IP's are available from various sources, allowing designers to utilize and integrate them into their designs without reinventing the wheel.
@@ -102,7 +102,7 @@ In June 2020, Google and SkyWater Technology released an open-source PDK for a 1
 
 Overall, open-source RTL IP's, EDA tools, and PDKs play crucial roles in enabling open-source ASIC design, providing designers with the necessary resources and tools to create custom integrated circuits.
 
-## ii. RTL2GDS flow.   
+##  RTL2GDS flow.   
 
 The RTL-to-GDS (Register Transfer Level to Graphic Data System) flow is a sequence of steps in the physical design process of an integrated circuit, starting from the Register Transfer Level (RTL) description and ending with the Graphic Data System (GDS) file, which contains the layout information for fabrication. Here's an overview of the main steps involved in the RTL-to-GDS flow:
 
@@ -122,7 +122,7 @@ After successfully completing the sign-off stage, the final GDS file is generate
 
 The RTL-to-GDS flow is a complex and iterative process that requires expertise in various areas of physical design and verification. It involves multiple iterations and optimizations to achieve a well-optimized and manufacturable chip layout.
 
-## iii. Introduction to OpenLane.    
+##  Introduction to OpenLane.    
 OpenLane comes with Apache version 2.0 license.   
 The Main goal of OpenLane is Clean GDS2 without human intervention.   
 It has 2 modes of operation.   
@@ -130,7 +130,7 @@ I) Autonomous : Where we just push a button post configuring the flow and we'll 
 II) Interactive : Here we runs commands step by step.     
 It also has the feature called Design Space Exploration where it finds the best set of flow configuration.   
 
-## iv. OpenLane detailed ASIC design flow.   
+##  OpenLane detailed ASIC design flow.   
 
 OpenLane comes with several abc scripts. In RTL synthesis, it translates RTL to logic circuit. This circuit can be optimized and mapped to standard library cell using abc.    
 For DFT, it used opensource project called **FAULT**.   
@@ -142,7 +142,7 @@ For STA, we use OpenSTA for timing analysis.
 
 # 4. OpenSource EDA Tools.
 
-## i. OpenLane Directory structure.
+##  OpenLane Directory structure.
 
 OpenLane is not justa tool, its a flow comprising of many opensource EDA tools like yosys, openSTA, openRoad, etc.    
 ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/14e1cce8-fd98-4e27-89fa-b9b01e91a315)
@@ -153,7 +153,7 @@ Libs.ref : contains tech related libraries.
 libs.tech: contains files that are specific to the tool.   
 
 
-## ii. Design Preparation steps:   
+##  Design Preparation steps:   
 ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/48b9cc47-6f16-40d1-8eb6-570d0cfd73d4)     
 
 
@@ -180,7 +180,7 @@ Inside picorv32a, we have several files.
 Here we're perparing the design by **Merging LEFs**. It will merge both "Cell and tech lefs."   
 
 
-## iii. Review files after design preparation and run synthesis.   
+##  Review files after design preparation and run synthesis.   
 ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/237adc3d-4269-4f38-a80f-0755c6b5b160)
 
 
@@ -193,7 +193,7 @@ Inside "tmp", we'll se merged.lef file is created which contains the info about 
     
  Now we'll run the synthesis by command : "% run_synthesis".
     
-## iv. Steps to characterize sysnthesis results.    
+##  Steps to characterize sysnthesis results.    
 
 After synthesis is completed.   
 
@@ -208,7 +208,7 @@ We can also check the above in synthesis report at the location : runs --> date 
 
 # 5. Chip Floorplanning and Considerations.    
 
-## i. Utilization Factor and Aspect Ratio.   
+## Utilization Factor and Aspect Ratio.   
 Die : Consists of core and is small semiconductor material specimen on which the fundamental circuit is fabricated.    
 Core : Core is the section of the chip where the fundamental logic of design sits.     
 
@@ -216,27 +216,27 @@ Utilization Factor = (Area occupied by netlist)/(Total Area of Core)
 Aspect Ratio = Height / Weight      
 
 
-## ii. Concept of pre-placed cells.          
+##  Concept of pre-placed cells.          
 Advantage of seperate cells is that it increases the reusability.     
 There are many block like these used for ex. Mux, FF, etc to be pre-placed.
 This pre-placement has to be done before placement. 
 Placement of these blocks will be fixed.  
 Once they are fixed, they can't be moved.       
 
-## iii. De-coupling Capacitors           
+## De-coupling Capacitors           
 Due to long wire interconnect from power supply, therer will be resistance and inductance drop so the voltage that will be reaching to the other end will be less than Vdd.       
 If that voltage decreases and goes below the Noise Margin Level, then it'll be in Undefined region and that'll be a problem for us.           
 So we add de-couplinh high valued capacitor that will charge itself and discharge when needed.    
 It is closely attached to critical blocks so no interconnect delay.        
  
  
-## iv. Power Planning      
+##  Power Planning      
  It's not feasible to supply power to all the places from single source due to RLC effects in interconnect.  
  It may also lead to phenomenon like Voltage Droop and Ground bounce.     
  So we go for grid based power planning.     
 
 
-## V. Pin-Placement :        
+##  Pin-Placement :        
 The above circuit has to be implemneted and we need to do pin placement for this circuit.     
 Blocks in gery are pre-placed.        
 The circuit pin placement is done in above image.   
@@ -244,12 +244,12 @@ Currently it is done in random type. Later we'll place the block according to ou
 The clock port is bigger in size as it has to drive all the sequential elements at the whole chip.      
 
 
-## VI. Steps to run floorplan using openLane.     
+## Steps to run floorplan using openLane.     
 ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/52c5dfa5-96c8-44d5-a3aa-2898aa866a0e)     
 In Floorplan.tcl, the information about Metal layer is defined and along with that th IO_mode setting = 1. It means the IO ports are equidistant.    
 Use the command : "run_floorplan"   
 
-## VII. Review floorplan adn steps to view floorplan.     
+## Review floorplan adn steps to view floorplan.     
 Inside the floorplan results : 
 ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/097a08c4-7ebd-4725-8214-d229ce326a9e)      
 we'l get to see the Die Area.    
@@ -275,7 +275,7 @@ They are kept in lower left.
 ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/cbc1306e-dca1-4585-8aa5-ecb2ddae3077)     
 
 # 6. Library Binding and Placement.     
-## I. Netlist binding and initial place design.     
+##  Netlist binding and initial place design.     
  In library alll the info. related to the cells be it gates and their delay, all is present.    
  There are various sizes are also available which helps in defining their drive strength. The more the size, lower the resistance, more the driving capability.   
 
@@ -283,16 +283,16 @@ They are kept in lower left.
  we've to place our netlist on the floorplan.    
  We also have to use some optimization techniques to adjust our placement and improve the performance.    
  
-## II. Optimize placement using estimated wirelength and capacitance.        
+##  Optimize placement using estimated wirelength and capacitance.        
  Now the circuit has been placed according to rows of standard cell.    
  Now we need to optimize the placement.    
  **Signal Integrity :** Here we use repeaters/buffers yo repliocate the original signal and send again basiclly we replenish its original value which was dropped. 
  By adding Repeaters, the Area will increase though.    
  
-## III. Final placement optimization.   
+##  Final placement optimization.   
  Here is the final optimized placement with buffers inserted.    
  
-## IV. Need for library characterization and Congestion aware placement using Replace.     
+##  Need for library characterization and Congestion aware placement using Replace.     
  Library characterization is important for EDA tools as its gate properties and requirements should be known and identified by EDA tools.    
  
  After Floorplan, we have to go for placement.   
@@ -309,20 +309,20 @@ They are kept in lower left.
  
  
 # 7. Cell design and characterization flow.     
-## I. inputs for cell design flow.    
+##  inputs for cell design flow.    
  Inputs for cell design are :    
  process design kits (PDKs).   
  DRC and LVS rules.   
  Spice models.   
  Library and user-defined specs.    
  
-## II. Layout design steps.  
+## Layout design steps.  
 First fore layout we go for EULER's path where it traces the path only once.    
 We create seperate for both nmos network and pmos network.     
 Then we create Stick Diagram.   
 Then finally we create Layout.   
 
-## III. Typical Characterization Flow.    
+##  Typical Characterization Flow.    
 Characterization will help us to get our timing , noise and power informantion.    
 First we'll take the buffer description.    
 Then we extract the spice netlist.   
@@ -342,7 +342,8 @@ propogation delay : difference between output and input delay at 50%.
 Choosing a  threshold otherwise, the delay might be negative.   
 
 # 9. Labs for CMOS inverter using ngspice.   
-## I. IO placer revision.    
+
+## IO placer revision.    
 Earlier we saw that the ports were equidistant from each other as IO_mode is set to 1.  
 Now we'll try to change that.   
 use command : "set :: env(FP_IO_MODE) 2"     
@@ -350,7 +351,7 @@ use command : "set :: env(FP_IO_MODE) 2"
 ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/946c0303-b0cc-4bde-ab1e-2d4ac43bb08d)     
 As seen above all the IO ports are assigned to lower left corner.    
 
-## II. SPICE deck creation for CMOS inverter.   
+## SPICE deck creation for CMOS inverter.   
   
 
 The syntax for spice decl is Name Drain Gate Source Substrate Type Width Length.    
@@ -383,7 +384,7 @@ Again use CMP for planarizing the surface. Then deposit Al layer. Keep doing thi
 
 # 11.Labs for layout & SKY130 tech file labs :    
 
-## I. steps to git clone vsdstdcell design.    
+## steps to git clone vsdstdcell design.    
 
 We use below command for github clone :    
 ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/afe370dd-9d29-45a7-bd0a-e8b6011264cf)   
@@ -416,7 +417,7 @@ Now extract the file including parasitics :
 open the extracted file using vim :    
 ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/31878358-8718-4ee9-8aca-6b99a91f78ce)    
 
-## II. create final SPICE deck using sky130 tech:    
+## create final SPICE deck using sky130 tech:    
 
 Now make changes in extracted spice file :   
 ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/0956b3ff-f037-4072-b8c3-dc3f27fa6ddb)    
@@ -441,7 +442,7 @@ Now well find propogation delay.
 propogation delay will be difference between output and input at 50% of Vdd.    
 ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/105a8dab-6118-4ca5-b9ee-6220150ad6bc)    
 
-## III. Magic Tool and DRC rules.    
+## Magic Tool and DRC rules.    
 
 First we'll get to know about the documentation of magic at : ```http://opencircuitdesign.com/magic```     
 Navigating the site, we'll get 2 useful directories : Using Magic and Technology Files.   
@@ -459,7 +460,7 @@ use command ```tar xfz drc_tests.tgz``` to extract the files.
 
 Now to open magic in high resolution : ```magic -d XR```   
 
-## IV. Introduction to Magic   
+##  Introduction to Magic   
    
 
 Magic Tablet: It refers to the software tool called Magic, which is used for integrated circuit layout design.    
@@ -489,7 +490,7 @@ Measuring Distance: By putting the cursor between the contact cut and the drawn 
 
 ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/cbc4ae22-703a-4a82-b0b2-1263a89c68d4)     
 
-## V. fix poly.9 error in DRC.    
+##  fix poly.9 error in DRC.    
 
 First load the file ```poly.mag```   
 
@@ -519,7 +520,7 @@ Again using ```tech load sky130A.tech``` & ```drc check``` the error is resolved
 
 # 12.  Pre-layout Timing Analysis.     
 
-## I. Convert grid info. to track info.     
+##  Convert grid info. to track info.     
 
 During the placement phase in the design of integrated circuits, it is not necessary to have the entire detailed information of the individual cells within the circuit. Instead, only certain key information is required, such as the PR (placement and routing) boundary, I/O ports, and power and ground rails of the cell. This information is typically defined in a specific file format called the Library Exchange Format (LEF).    
 
@@ -548,7 +549,7 @@ The I/O ports are in `li` layer so we'll check if they intersect at the grid.
 The below image shows the intersection of metal layer at I/O ports.    
 ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/e0d53b3e-f688-4d89-b45b-f316e48ce0ca)    
 
-## II. Convert magic layout to std. cell design.     
+## Convert magic layout to std. cell design.     
 
 A cell with ports is called a macro cell. Ports are defined as pins within the macro. The objective is to extract information from a MAG file to generate a corresponding LEF file. The MAG file contains layout details, including the pins. By analyzing the MAG file, information such as dimensions and pin locations can be extracted. This information is then formatted into the LEF file, which represents the macro cell in a standardized format. Generating the LEF file ensures compatibility and proper integration of the macro cell into the circuit design.    
 
@@ -564,7 +565,7 @@ Make necessary changes as below :
 
 Now as the parameter are set, we'll extract the .lef file.    
 
-## III. Custom cell naming.    
+## Custom cell naming.    
 
 Now extract the above using the command `save sky130_vsdinv.mag`.    
 This will extract the file       
@@ -577,7 +578,7 @@ Further extract the lef file by `lef write` in tkcon.
 Opening the .lef file we'll see the pins are created because when we set a layer to port, a PIN is formed.   
 Also the details of ports are in the order we gave to port as 0 being the highest order.      
 
-## IV. Custom layout to openlane.     
+## Custom layout to openlane.     
 
 First copy the new `.lef` file to **src** folder.      
 
