@@ -88,7 +88,7 @@ After the design of the RISC-V core, it needs to be fabricated into an actual ph
 In summary, RISC-V is an open-source instruction set architecture used for designing computer processors. High-level language code is translated into assembly language and then further into machine code, which is executed by a RISC-V processor core. The designed RISC-V core is then fabricated into a physical layout to create a functional chip.
  
 ## From Software applications to Hardware. 
- 
+ ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/045b2214-8ab8-42cb-b19d-1ceae0d67197)   
  
 Here the entire flow is shown from application to hardware.      
 **System Software :**     
@@ -150,6 +150,8 @@ It also has the feature called Design Space Exploration where it finds the best 
 
 ##  OpenLane detailed ASIC design flow.   
 
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/ae7ba90d-a9de-4a9c-b4fa-4c24b3bd4029)    
+
 OpenLane comes with several abc scripts. In RTL synthesis, it translates RTL to logic circuit. This circuit can be optimized and mapped to standard library cell using abc.    
 For DFT, it used opensource project called **FAULT**.   
 For Physical Implementation we'll use OpenRoad.   
@@ -162,8 +164,8 @@ For STA, we use OpenSTA for timing analysis.
 
 ##  OpenLane Directory structure.
 
-OpenLane is not justa tool, its a flow comprising of many opensource EDA tools like yosys, openSTA, openRoad, etc.    
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/14e1cce8-fd98-4e27-89fa-b9b01e91a315)
+OpenLane is not just a tool, its a flow comprising of many opensource EDA tools like yosys, openSTA, openRoad, etc.    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/64f14fea-e9e0-4155-b00b-e1a1ba1b29b4)   
 
 
 Here, inside PDK's we'll be using SkyWater pdk. In that we have Libs.ref and libs.tech.    
@@ -172,44 +174,36 @@ libs.tech: contains files that are specific to the tool.
 
 
 ##  Design Preparation steps:   
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/48b9cc47-6f16-40d1-8eb6-570d0cfd73d4)     
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/242d8868-f94c-493b-bfed-28585f688e17)       
 
 
 We use **Interactive** method in our case to do step by step process.    
 we also include the packages.    
 
 
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/5b3478a9-6b57-4e6c-876b-d7e2f447a214)
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/6dd7ee30-1823-40f2-8146-1af20fee010d)  
 
 
 Inside picorv32a, we have several files.   
 **src :** It contains RTL(.v) file + (.sdc) file.      
 **Config.tcl**  bypasses any config. that has already done into a plane.  Inside it, it has clocl period, clock net, clock port, etc.   
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/5967b79c-b6cc-4009-873d-adb6cb744ca7)
 
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/238e07ef-8d6d-43d0-a2cc-8e269e3127c3)   
 
 **Other Skywater files** : they can override the clock period and other defined things in config.     
 
-
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/19ccd3ad-914c-42e9-a78e-a84ad0376666)
-
-
-
-Here we're perparing the design by **Merging LEFs**. It will merge both "Cell and tech lefs."   
+further we'll prepare the design by **Merging LEFs**. It will merge both "Cell and tech lefs."   
+command : `prep -design picorv32a`
 
 
 ##  Review files after design preparation and run synthesis.   
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/237adc3d-4269-4f38-a80f-0755c6b5b160)
-
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/00a0ba25-03a5-45c8-a997-8b12662cce01)
 
 
 Going into the folders : runs --> Date Folder --> tmp.    
-Inside "tmp", we'll se merged.lef file is created which contains the info about levels, wires, vias, etc.   
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/842e36f1-5a9e-4a70-84a2-7f18d62f90bf)
-
-
+Inside "tmp", we'll se `merged.lef` file is created which contains the info about levels, wires, vias, etc.   
     
- Now we'll run the synthesis by command : "% run_synthesis".
+ Now we'll run the synthesis by command : `run_synthesis`
     
 ##  Steps to characterize sysnthesis results.    
 
@@ -219,7 +213,7 @@ We'll try to find the FLOP area.
 
 Flop Area = (No. of DFF's) / Total number of cells. 
 
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/64eb0164-8957-4a12-a9d0-030956429ffa)
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/c6875436-734e-45ee-a5ac-cc7187b7371a)   
 
 So, Flop Area = 1613/14876 = 0.10842 i.e. 10.8%.    
 We can also check the above in synthesis report at the location : runs --> date --> reports --> synthesis --> "yosys_2.stat.rpt"
@@ -263,18 +257,20 @@ The clock port is bigger in size as it has to drive all the sequential elements 
 
 
 ## Steps to run floorplan using openLane.     
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/52c5dfa5-96c8-44d5-a3aa-2898aa866a0e)     
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/d4a3bd57-8ce5-4a72-aab4-3ff53b2b646f)   
 In Floorplan.tcl, the information about Metal layer is defined and along with that th IO_mode setting = 1. It means the IO ports are equidistant.    
-Use the command : "run_floorplan"   
+Use the command : `run_floorplan`  
 
-## Review floorplan adn steps to view floorplan.     
+## Review floorplan and steps to view floorplan.     
 Inside the floorplan results : 
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/097a08c4-7ebd-4725-8214-d229ce326a9e)      
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/129a6700-9cf1-428b-8618-08a06a8e3406)   
+
 we'l get to see the Die Area.    
 In the format : (lower left x      lower left y)   (upper right x    upper right y).       
 Now use the below command to open magic to see floorplan : 
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/8016b2fa-8099-4254-a3a0-52c312b8537b)    
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/577eb40c-5d9a-4ba9-8916-e43e4ba148cf)   
+`magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &`   
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/8ccc4076-6e8d-4679-a181-62bb2e6f9554)   
+
 Few commands to navigate magic :      
 'S' = select.    
 'Z' = zoom.     
@@ -282,15 +278,15 @@ Few commands to navigate magic :
 'left and rigt mouse click' = make a box.    
 
 Now to find metal layer info. :   
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/b8d37a1e-65b2-4e12-b069-156bd43ead8b)    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/ed58307b-0fbb-4ca1-a985-48bfb13361d0)      
 Use "what" after selecting the port to see the metal layer.    
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/7aa56d88-f96d-4bc4-a314-61ffa4a6f355)     
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/e85d6b32-111d-440c-8b1d-9769ca5ebd21)        
 Similarly for vertical ports :    
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/57204608-0cfd-4329-9ec7-a103bd773d00)      
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/cc222520-c7e0-4991-8705-4bf7cb48cd34)     
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/dec1328e-8253-4316-bb8f-ddce07b525e6)      
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/eb486299-da9e-484f-bedd-3c4bb3156629)     
 Standard cells are diagonally equidistant from each other.    
 They are kept in lower left.     
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/cbc1306e-dca1-4585-8aa5-ecb2ddae3077)     
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/8c8dc231-9a15-41dd-9b47-30d5bcd74ac5)      
 
 # 6. Library Binding and Placement.     
 ##  Netlist binding and initial place design.     
@@ -317,12 +313,13 @@ They are kept in lower left.
  We're doing congestion related placement and ignoring timing conbstraint for now.   
  For global placement, the main objective is to reduce wirelength.    
  So in openLane we use HPWL - half parameter wire length.    
- use command "run_placement".   
- ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/47e45e68-3d9c-4ce3-972b-624d2aeacd99)    
+ use command `run_placement`.   
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/19c31427-5d39-4f8a-aedd-f9df165124fc)   
+
  We'll see the overflow vbalue is converging, means our placement is going right.    
  Opening placement using the command :    
- ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/4926892c-9c2b-4a20-a17e-267b8de090d8)     
- ![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/7c5b12fa-3220-433f-9da4-0642c4bb9fe0)      
+    `magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &`   
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/6d4a91c2-7e8e-4d07-ae2d-72b8825d1dfc)      
  
  
  
@@ -364,9 +361,9 @@ Choosing a  threshold otherwise, the delay might be negative.
 ## IO placer revision.    
 Earlier we saw that the ports were equidistant from each other as IO_mode is set to 1.  
 Now we'll try to change that.   
-use command : "set :: env(FP_IO_MODE) 2"     
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/487ad069-3a5a-407d-bf2b-c32783552afa)     
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/946c0303-b0cc-4bde-ab1e-2d4ac43bb08d)     
+use command : `set :: env(FP_IO_MODE) 2`     
+    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/711282a3-d6d2-4f3e-9505-30b2c2f90914)     
 As seen above all the IO ports are assigned to lower left corner.    
 
 ## SPICE deck creation for CMOS inverter.   
@@ -405,40 +402,39 @@ Again use CMP for planarizing the surface. Then deposit Al layer. Keep doing thi
 ## steps to git clone vsdstdcell design.    
 
 We use below command for github clone :    
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/afe370dd-9d29-45a7-bd0a-e8b6011264cf)   
+`git clone https://github.com/nickson-jose/vsdstdcelldesign.git` 
 
-Next --> Copy the magic's tech file of sky130A : 
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/df659ceb-a0cd-4ead-9f4d-f61818761e7b)     
+Next --> Copy the magic's tech file of sky130A.
 
 Opening Command :   
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/98adb9e4-4e1e-431c-8593-84c95c2500e3)    
+`magic -T sky130A.tech sky130_inv.mag &`    
 
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/4b684c80-125c-468b-93e4-9454ab2c6539)    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/393cbd37-f3f9-4bd1-bd16-b835a91457a4)     
 Cheking the region by selecting :   
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/a23a0cba-90a6-4a8d-8be2-55cef52cead3)    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/f3622b6f-f776-4f33-99cd-0c386dc1695a)   
 
 To select a connection : Press S twice, hovering the mouse on that region.    
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/f6c1ffdd-26c3-4dcd-bf1a-3706e235b674)    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/51d2efd7-c686-424a-9e4d-bebd5e5e33dc)   
 
 Deleting some of the area to create DRC violations :    
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/be067860-b5ca-4fcf-8a6e-56ed128e8834)    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/7b18ec5e-b90f-41e0-ac1e-59f72fd50acc)     
 
 To identify the region of DRC error : goto DRC FIND NEXT ERROR.    
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/b882de65-6de8-4933-b8ba-f247464c36fe)    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/ec1ec731-546a-4fd0-ad1c-3dfce4c0cd20)      
 
-In tkcon, it;ll describe the error :    
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/fe9f36e1-55ec-4201-96ef-c337f8866f11)    
+In tkcon, it'll describe the error :    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/a29ec5c5-f637-494c-8ce5-b8abe67ad8cb)     
 
 Now extract the file including parasitics :   
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/e5880f23-bcd9-46a3-8e13-ad9e76432caf)   
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/191b528a-b657-4418-a0cd-32ec51557051)   
 
 open the extracted file using vim :    
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/31878358-8718-4ee9-8aca-6b99a91f78ce)    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/c6312a3b-ac2a-49a9-8220-fa3cc2773ab6)      
 
 ## create final SPICE deck using sky130 tech:    
 
 Now make changes in extracted spice file :   
-![image](https://github.com/YashpalRathod14/Physical-Design/assets/135158197/0956b3ff-f037-4072-b8c3-dc3f27fa6ddb)    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/cfe36a5c-fbea-40b0-9c47-37e963e65902)     
 
 use command : ```ngspice sky130_inv.spice``` to open that file in ngspice.     
 ![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/47d736bd-a763-4b02-9db2-8b59e7213a80)     
