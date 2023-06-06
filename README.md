@@ -773,7 +773,10 @@ To final layout :
 
 use the below command in results/routing : `'magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.def &'`   
 
-Parasitic extraction is a crucial step in the physical design flow of integrated circuits (ICs). It involves extracting and modeling the parasitic effects introduced by interconnects, such as resistance, capacitance, and inductance, which can significantly impact the performance and functionality of the circuit.   
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/fa95f57b-3894-4493-9f63-08db00a677cd)    
+![image](https://github.com/YashpalRathod14/Physical_Design_Updated/assets/135158197/ca4f4fb2-7bde-43c6-b094-5593dfec9754)   
+
+**Parasitic extraction** is a crucial step in the physical design flow of integrated circuits (ICs). It involves extracting and modeling the parasitic effects introduced by interconnects, such as resistance, capacitance, and inductance, which can significantly impact the performance and functionality of the circuit.   
 
 In the case of OpenLANE, the parasitic extraction process is typically performed separately using a dedicated SPEF (Standard Parasitic Exchange Format) extractor tool outside of the OpenLANE environment. The tool used for extraction is referred to as the "SPEF extractor."    
 
