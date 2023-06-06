@@ -2,7 +2,7 @@
 
 ## Content
 1. [Overview](#1-overview)    
-2. [How to talk to computers ?](#2-how-to-talk-to-computers-)   
+2. [How to talk to computers ?](https://github.com/YashpalRathod14/Physical_Design_Updated#introduction-to-basic-terminologies)   
   -[Introduction to basic terminologies.](#i-introduction-to-basic-terminologies)   
   -[Introduction to RISC V](#ii-introduction-to-risc-v)   
   -[From Software applications to Hardware](#iii-from-software-applications-to-hardware)   
