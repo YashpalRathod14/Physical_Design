@@ -29,8 +29,7 @@
   -[Optimize placement using estimated wirelength and capacitance](https://github.com/YashpalRathod14/Physical_Design_Updated#optimize-placement-using-estimated-wirelength-and-capacitance)    
   -[Final placement optimization](https://github.com/YashpalRathod14/Physical_Design_Updated#final-placement-optimization)    
   -[Need for library characterization and Congestion aware placement using Replace](https://github.com/YashpalRathod14/Physical_Design_Updated#need-for-library-characterization-and-congestion-aware-placement-using-replace)    
-  
-7.[Cell design and characterization flow](https://github.com/YashpalRathod14/Physical_Design_Updated#7-cell-design-and-characterization-flow)    
+7. [Cell design and characterization flow](https://github.com/YashpalRathod14/Physical_Design_Updated#7-cell-design-and-characterization-flow)    
   -[inputs for cell design flow](https://github.com/YashpalRathod14/Physical_Design_Updated#inputs-for-cell-design-flow)    
   -[Layout design steps.](#layout-design-steps)    
   -[Typical Characterization Flow](#typical-characterization-flow)   
